@@ -1,6 +1,6 @@
 ﻿namespace PalcoNet
 {
-    partial class Form1
+    partial class FrmMain
     {
         /// <summary>
         /// Variable del diseñador requerida.
