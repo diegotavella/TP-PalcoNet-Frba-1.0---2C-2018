@@ -43,10 +43,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\BaseBusiness.cs" />
+    <Compile Include="Implementations\UsuarioBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PalcoNet.Dtos\PalcoNet.Dtos.csproj">
+      <Project>{3337f078-8a4e-4065-9931-701b79dd5aca}</Project>
+      <Name>PalcoNet.Dtos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PalcoNet.Entities\PalcoNet.Entities.csproj">
+      <Project>{ca81ea90-4121-4587-9cc4-d094aaae01e7}</Project>
+      <Name>PalcoNet.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PalcoNet.Infraestructure\PalcoNet.Infraestructure.csproj">
+      <Project>{8e2651d5-f5bd-4f4b-a86f-d74c684c6256}</Project>
+      <Name>PalcoNet.Infraestructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PalcoNet.Repositories\PalcoNet.Repositories.csproj">
+      <Project>{0290b2d8-6061-4d56-a315-6b13f3f6847c}</Project>
+      <Name>PalcoNet.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

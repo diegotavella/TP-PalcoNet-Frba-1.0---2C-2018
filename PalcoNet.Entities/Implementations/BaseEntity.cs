@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace PalcoNet.Entities.Implementations
 {
-    public class Usuario : BaseEntity<int>
+    public abstract class BaseEntity<TID>
     {
-        public string UserName { set; get; }
-        public string Password { set; get; }
-        public bool Inhabilitado { set; get; }
+        public TID Id { get; set; }
+        public DateTime? FechaBaja { set; get; }
     }
 }

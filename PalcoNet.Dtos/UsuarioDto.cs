@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PalcoNet.Entities.Implementations
+namespace PalcoNet.Dtos
 {
-    public class Usuario : BaseEntity<int>
+    public class UsuarioDto : BaseDto<int>
     {
         public string UserName { set; get; }
         public string Password { set; get; }

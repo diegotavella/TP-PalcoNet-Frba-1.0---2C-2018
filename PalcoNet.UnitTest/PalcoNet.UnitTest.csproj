@@ -59,6 +59,28 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PalcoNet.Business\PalcoNet.Business.csproj">
+      <Project>{2cb5f7a1-2fa3-4f33-8be5-110b8552f168}</Project>
+      <Name>PalcoNet.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PalcoNet.Dtos\PalcoNet.Dtos.csproj">
+      <Project>{3337f078-8a4e-4065-9931-701b79dd5aca}</Project>
+      <Name>PalcoNet.Dtos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PalcoNet.Entities\PalcoNet.Entities.csproj">
+      <Project>{ca81ea90-4121-4587-9cc4-d094aaae01e7}</Project>
+      <Name>PalcoNet.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PalcoNet.Infraestructure\PalcoNet.Infraestructure.csproj">
+      <Project>{8e2651d5-f5bd-4f4b-a86f-d74c684c6256}</Project>
+      <Name>PalcoNet.Infraestructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PalcoNet.Repositories\PalcoNet.Repositories.csproj">
+      <Project>{0290b2d8-6061-4d56-a315-6b13f3f6847c}</Project>
+      <Name>PalcoNet.Repositories</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

@@ -39,7 +39,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDto.cs" />
+    <Compile Include="Filters\BaseFilter.cs" />
+    <Compile Include="Filters\UsuarioFilter.cs" />
+    <Compile Include="Responses\PagedListResponse.cs" />
+    <Compile Include="Responses\Response.cs" />
+    <Compile Include="Responses\Result.cs" />
+    <Compile Include="UsuarioDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PalcoNet.Infraestructure\PalcoNet.Infraestructure.csproj">
+      <Project>{8e2651d5-f5bd-4f4b-a86f-d74c684c6256}</Project>
+      <Name>PalcoNet.Infraestructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

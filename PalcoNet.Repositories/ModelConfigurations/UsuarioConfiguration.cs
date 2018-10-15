@@ -13,6 +13,10 @@ namespace PalcoNet.Repositories.ModelConfigurations
         public UsuarioConfiguration()
         {
             ToTable("Usuario");
+            HasKey(x => x.Id);
+            Property(q => q.UserName).HasColumnName("UserName");
+            Property(q => q.Password).HasColumnName("Password");
+            Property(q => q.Inhabilitado).HasColumnName("Inhabilitado");
         }
     }
 }

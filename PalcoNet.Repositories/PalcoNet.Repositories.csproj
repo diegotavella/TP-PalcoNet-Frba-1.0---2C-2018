@@ -48,6 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementations\GenericRepository.cs" />
+    <Compile Include="Interfaces\IContext.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="ModelConfigurations\UsuarioConfiguration.cs" />
     <Compile Include="PalcoNetContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
