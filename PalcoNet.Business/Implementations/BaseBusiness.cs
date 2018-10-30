@@ -4,6 +4,7 @@ using PalcoNet.Dtos.Responses;
 using PalcoNet.Entities.Implementations;
 using PalcoNet.Infraestructure.Exceptions;
 using PalcoNet.Infraestructure.Filters;
+using PalcoNet.Infraestructure.Logging;
 using PalcoNet.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,22 @@ namespace PalcoNet.Business.Implementations
         where TDto : BaseDto<TID>, new()
         where TFilter : BaseFilter<TID>, new()
     {
-        protected readonly IUnitOfWork uow = null;
+        protected readonly IUnitOfWork _uow = null;
+        protected readonly IMapper _mapper = null;
+        protected readonly ILogger _logger = null; 
 
-        public BaseBusiness(IUnitOfWork uow)
+        public BaseBusiness(IUnitOfWork uow, IMapper mapper, ILoggerFactory loggerFactory)
         {
             if (uow == null)
                 throw new ArgumentException("La unidad de trabajo es obligatoria");
-            this.uow = uow;
+            if (mapper == null)
+                throw new ArgumentNullException("El mapper es obligatorio");
+            if (loggerFactory == null)
+                throw new ArgumentNullException("El logger es obligatorio");
+
+            this._uow = uow;
+            this._mapper = mapper;
+            this._logger = loggerFactory.Get<BaseBusiness<TID, TEntity, TDto, TFilter>>();
         }
 
         public Response<TDto> Insert(TDto TD)
@@ -32,8 +42,14 @@ namespace PalcoNet.Business.Implementations
             var response = new Response<TDto>();
             try
             {
-                TEntity TE = Mapper.Map<TDto, TEntity>(TD);
-                uow.GetRepository<TEntity>().Insert(TE);
+                TEntity TE = OnToEntity(TD);
+                if (!OnValidate(TE))
+                {
+                    response.Result.HasErrors = true;
+                    response.Result.Messages.Add("Validación incorrecta");
+                    return response;
+                }
+                _uow.GetRepository<TEntity>().Insert(TE);
                 response.Result.Messages.Add("Agregado satisfactorio");
                 return response;
             }
@@ -52,7 +68,7 @@ namespace PalcoNet.Business.Implementations
             try
             {
                 TEntity TE = Mapper.Map<TDto, TEntity>(TD);
-                uow.GetRepository<TEntity>().Update(TE);
+                _uow.GetRepository<TEntity>().Update(TE);
                 response.Result.Messages.Add("Actualizado satisfactorio");
                 return response;
             }
@@ -71,7 +87,7 @@ namespace PalcoNet.Business.Implementations
             try
             {
                 TEntity TE = Mapper.Map<TDto, TEntity>(TD);
-                uow.GetRepository<TEntity>().Delete(TE);
+                _uow.GetRepository<TEntity>().Delete(TE);
                 response.Result.Messages.Add("Borrado satisfactorio");
                 return response;
             }
@@ -90,7 +106,7 @@ namespace PalcoNet.Business.Implementations
             try
             {
                 TEntity TE = Mapper.Map<TDto, TEntity>(TD);
-                uow.GetRepository<TEntity>().Delete<TID>(TD.Id);
+                _uow.GetRepository<TEntity>().Delete<TID>(TD.Id);
                 response.Result.Messages.Add("Borrado satisfactorio");
                 return response;
             }
@@ -108,7 +124,7 @@ namespace PalcoNet.Business.Implementations
             var response = new Response<TDto>();
             try
             {
-                TEntity TE = uow.GetRepository<TEntity>().GetById<TID>(id);
+                TEntity TE = _uow.GetRepository<TEntity>().GetById<TID>(id);
                 TDto TD = Mapper.Map<TEntity, TDto>(TE);
                 return response;
             }
@@ -128,13 +144,13 @@ namespace PalcoNet.Business.Implementations
 
             try
             {
-                var query = OnFilter(uow.GetRepository<TEntity>().GetQuery(), filter);
+                var query = OnFilter(_uow.GetRepository<TEntity>().GetQuery(), filter);
 
                 //query = filter.Id > 0 ? query.Where(q => q.Id == filter.Id) : query;
-                query = filter.FechaBaja.HasValue ? query.Where(q => q.FechaBaja != filter.FechaBaja) : query;
+                //query = filter.FechaBaja.HasValue ? query.Where(q => q.FechaBaja != filter.FechaBaja) : query;
 
                 count = query.Count();
-                if (filter.PageSize >= 0)
+                if (filter.PageSize >= 0 && filter.CurrentPage > 0)
                 {
                     query = query.Take(filter.PageSize);
                     query = query.Skip(filter.CurrentPage);
@@ -157,11 +173,17 @@ namespace PalcoNet.Business.Implementations
 
         public IList<TDto> GetAll()
         {
-            var listTE = uow.GetRepository<TEntity>().GetAll();
+            var listTE = _uow.GetRepository<TEntity>().GetAll();
             var listDC = Mapper.Map<IList<TEntity>, IList<TDto>>(listTE);
             return listDC;
         }
 
         protected abstract IQueryable<TEntity> OnFilter(IQueryable<TEntity> query, TFilter filter);
+        protected abstract bool OnValidate(TEntity TE);
+        protected virtual TEntity OnToEntity(TDto TD)
+        {
+            TEntity TE = Mapper.Map<TDto, TEntity>(TD);
+            return TE;
+        }
     }
 }

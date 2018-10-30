@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PalcoNet.Entities.Implementations
+namespace PalcoNet.Entities.Interfaces
 {
-    public abstract class BaseEntity<TID>
+    public interface IRemovableEntity
     {
-        public TID Id { get; set; }
+        DateTimeOffset? FechaBaja { set; get; }
     }
 }

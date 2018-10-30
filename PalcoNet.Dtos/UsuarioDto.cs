@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PalcoNet.Dtos
 {
-    public class UsuarioDto : BaseDto<int>
+    public class UsuarioDto : BaseDto<Int64>
     {
         public string UserName { set; get; }
         public string Password { set; get; }

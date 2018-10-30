@@ -120,7 +120,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BootStrapper.cs" />
-    <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Canje Puntos\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +132,7 @@
     <Compile Include="Comprar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Configuratios\MapperProfiles\PalcoNetProfile.cs" />
     <Compile Include="Editar Publicacion\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +227,7 @@
       <Name>PalcoNet.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

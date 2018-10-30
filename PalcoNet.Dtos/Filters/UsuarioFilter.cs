@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PalcoNet.Infraestructure.Filters
 {
-    public class UsuarioFilter : BaseFilter<int>
+    public class UsuarioFilter : BaseFilter<Int64>
     {
     }
 }

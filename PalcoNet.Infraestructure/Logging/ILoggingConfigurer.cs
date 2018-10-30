@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PalcoNet.Entities.Implementations
+namespace PalcoNet.Infraestructure.Logging
 {
-    public abstract class BaseEntity<TID>
+    public interface ILoggingConfigurer
     {
-        public TID Id { get; set; }
+        void Configure();
     }
 }

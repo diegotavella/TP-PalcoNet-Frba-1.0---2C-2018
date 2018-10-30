@@ -20,14 +20,11 @@ namespace PalcoNet
         static void Main()
         {
             BootStrapper.Configuration();
-
-            //var i = new UnitOfWork(new PalcoNetContext());
-            var i = new PalcoNetContext();
-            var a = new UsuarioBusiness(i);
-            a.GetAll(); 
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            
+
             Application.Run(new FrmMain());
         }
     }

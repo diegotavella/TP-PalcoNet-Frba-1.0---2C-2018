@@ -20,6 +20,8 @@ namespace PalcoNet.Repositories
     {
         public PalcoNetContext() : base("PalcoNetContext")
         {
+            // No CodeFirst
+            Database.SetInitializer<PalcoNetContext>(null);
             base.Configuration.LazyLoadingEnabled = false;
         }
 
