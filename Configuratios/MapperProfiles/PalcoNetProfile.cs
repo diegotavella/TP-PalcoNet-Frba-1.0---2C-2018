@@ -14,6 +14,8 @@ namespace PalcoNet.Configuratios.MapperProfiles
         protected override void Configure()
         {
             CreateMap<UsuarioDto, Usuario>().ReverseMap();
+            CreateMap<RolDto, Rol>().ReverseMap();
+            CreateMap<FuncionalidadDto, Funcionalidad>().ReverseMap();
         }
     }
 }

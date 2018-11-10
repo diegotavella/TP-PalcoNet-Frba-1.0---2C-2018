@@ -50,9 +50,11 @@
     <Compile Include="BaseDto.cs" />
     <Compile Include="Filters\BaseFilter.cs" />
     <Compile Include="Filters\UsuarioFilter.cs" />
+    <Compile Include="FuncionalidadDto.cs" />
     <Compile Include="Responses\PagedListResponse.cs" />
     <Compile Include="Responses\Response.cs" />
     <Compile Include="Responses\Result.cs" />
+    <Compile Include="RolDto.cs" />
     <Compile Include="UsuarioDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

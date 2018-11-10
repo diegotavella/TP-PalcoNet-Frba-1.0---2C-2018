@@ -13,7 +13,7 @@ namespace PalcoNet.Infraestructure.Logging
     {
         public void Configure()
         {
-            var config = new XmlLoggingConfiguration(System.AppDomain.CurrentDomain.BaseDirectory + "web.config");
+            var config = new XmlLoggingConfiguration(System.AppDomain.CurrentDomain.BaseDirectory + "App.config");
             // TODO: no usar codigo, usar solo el de web.config
             config.AddTarget("Trace", new TraceTarget()
             {

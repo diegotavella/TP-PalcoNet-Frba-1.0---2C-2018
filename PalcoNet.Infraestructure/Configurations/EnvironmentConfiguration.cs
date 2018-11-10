@@ -10,7 +10,7 @@ namespace PalcoNet.Infraestructure.Configurations
     public static class EnvironmentConfiguration
     {
         /// <summary>
-        /// Lee la configuracion del webconfig para el valor DefaultSchema
+        /// Lee la configuracion AppSettings del App.config el valor de la entrada DefaultSchema de la BD
         /// </summary>
         /// <returns></returns>
         public static string GetDefaultSchema()

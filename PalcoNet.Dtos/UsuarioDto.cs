@@ -11,5 +11,6 @@ namespace PalcoNet.Dtos
         public string UserName { set; get; }
         public string Password { set; get; }
         public bool Inhabilitado { set; get; }
+        public List<RolDto> Roles { set; get; }
     }
 }

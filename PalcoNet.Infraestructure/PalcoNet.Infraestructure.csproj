@@ -61,6 +61,7 @@
     <Compile Include="Logging\ILoggerFactory.cs" />
     <Compile Include="Logging\ILoggingConfigurer.cs" />
     <Compile Include="Logging\NLogLogger.cs" />
+    <Compile Include="Logging\NLogLoggerFactory.cs" />
     <Compile Include="Logging\NLogLoggingConfigurer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

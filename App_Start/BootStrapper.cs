@@ -41,16 +41,15 @@ namespace PalcoNet.App_Start
                 cfg.AddProfile<PalcoNetProfile>();
             });
 
-            config.AssertConfigurationIsValid();
-            //Mapper.Initialize(cfg => cfg.CreateMap<UsuarioDto, Usuario>().ReverseMap());
-
             _container.RegisterInstance<IMapper>(config.CreateMapper());
+            config.AssertConfigurationIsValid();
         }
-
 
         protected void ConfigureContainer()
         {
             _container.RegisterType<IUnitOfWork, PalcoNetContext>();
+            _container.RegisterType<ILoggingConfigurer, NLogLoggingConfigurer>();
+            _container.RegisterType<ILoggerFactory, NLogLoggerFactory>();
             _container.Resolve<UsuarioBusiness>();
 
             //var assemblies = AllClases
