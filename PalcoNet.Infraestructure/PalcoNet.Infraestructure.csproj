@@ -56,6 +56,10 @@
     <Compile Include="Exceptions\FunctionalException.cs" />
     <Compile Include="Exceptions\PalcoNetException.cs" />
     <Compile Include="Exceptions\TechnicalException.cs" />
+    <Compile Include="Extensions\AutoMapperExtensions.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="Extensions\LoggerExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Helpers\ConfigHelper.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\ILoggerFactory.cs" />
@@ -64,6 +68,9 @@
     <Compile Include="Logging\NLogLoggerFactory.cs" />
     <Compile Include="Logging\NLogLoggingConfigurer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Algorithm.cs" />
+    <Compile Include="Security\Checksum.cs" />
+    <Compile Include="Security\SecurityHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

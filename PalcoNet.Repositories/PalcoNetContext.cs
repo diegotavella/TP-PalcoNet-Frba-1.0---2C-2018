@@ -115,6 +115,7 @@ namespace PalcoNet.Repositories
                 if (Transaction == null)
                     return;
 
+                Transaction.Rollback();
                 Transaction.Dispose();
                 Transaction = null;
             }

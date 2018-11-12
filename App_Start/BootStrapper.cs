@@ -4,6 +4,7 @@ using PalcoNet.Configuratios.MapperProfiles;
 using PalcoNet.Dtos;
 using PalcoNet.Entities.Implementations;
 using PalcoNet.Infraestructure.Logging;
+using PalcoNet.Infraestructure.Extensions;
 using PalcoNet.Repositories;
 using PalcoNet.Repositories.Interfaces;
 using System;
@@ -38,7 +39,8 @@ namespace PalcoNet.App_Start
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<PalcoNetProfile>();
+                cfg.AddProfilesFromAssemblyOf(GetType());
+                //cfg.AddProfile<PalcoNetProfile>();
             });
 
             _container.RegisterInstance<IMapper>(config.CreateMapper());
@@ -51,12 +53,6 @@ namespace PalcoNet.App_Start
             _container.RegisterType<ILoggingConfigurer, NLogLoggingConfigurer>();
             _container.RegisterType<ILoggerFactory, NLogLoggerFactory>();
             _container.Resolve<UsuarioBusiness>();
-
-            //var assemblies = AllClases
-
-            //_container.RegisterType(
-            
-            // DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
 
         protected void ConfigureLogging()

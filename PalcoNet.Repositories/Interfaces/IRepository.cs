@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PalcoNet.Dtos.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -11,8 +12,10 @@ namespace PalcoNet.Repositories.Interfaces
     {
         IQueryable<TE> GetByExpression(Expression<Func<TE, bool>> filter = null, string includeProperties = "");
         IQueryable<TE> GetQuery();
+        IQueryable<TE> GetQuery(Pager pager);
         TE GetById<TID>(TID id);
         IList<TE> GetAll();
+        IList<TE> GetAll(Pager pager);
         int GetCount();
         void Insert(TE entity);
         void Update(TE entityToUpdate);

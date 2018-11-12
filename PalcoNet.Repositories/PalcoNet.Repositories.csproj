@@ -61,6 +61,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\PalcoNet.Dtos\PalcoNet.Dtos.csproj">
+      <Project>{3337f078-8a4e-4065-9931-701b79dd5aca}</Project>
+      <Name>PalcoNet.Dtos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PalcoNet.Entities\PalcoNet.Entities.csproj">
       <Project>{ca81ea90-4121-4587-9cc4-d094aaae01e7}</Project>
       <Name>PalcoNet.Entities</Name>

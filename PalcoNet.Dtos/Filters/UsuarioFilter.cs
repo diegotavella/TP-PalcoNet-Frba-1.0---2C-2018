@@ -8,5 +8,7 @@ namespace PalcoNet.Infraestructure.Filters
 {
     public class UsuarioFilter : BaseFilter<Int64>
     {
+        public string UserName { set; get; }
+        public string Password { set; get; }
     }
 }

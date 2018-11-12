@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using PalcoNet.Dtos;
+using PalcoNet.Dtos.Filters;
 using PalcoNet.Dtos.Responses;
 using PalcoNet.Entities.Implementations;
+using PalcoNet.Entities.Interfaces;
 using PalcoNet.Infraestructure.Exceptions;
 using PalcoNet.Infraestructure.Filters;
 using PalcoNet.Infraestructure.Logging;
@@ -137,25 +139,44 @@ namespace PalcoNet.Business.Implementations
             }
         }
 
-        public PagedListResponse<TDto> GetByFilter(TFilter filter)
+        public Response<List<TDto>> GetByFilter(TFilter filter)
+        {
+            var response = new Response<List<TDto>>();
+            try
+            {
+                var query = OnFilter(_uow.GetRepository<TEntity>().GetQuery(), filter);
+
+                if (typeof(TEntity) is IRemovableEntity)
+                    query = filter.FechaBaja.HasValue ? query.Where(q => ((IRemovableEntity)q).FechaBaja != filter.FechaBaja) : query;
+
+                var listTE = query.ToList();
+                var listDC = Mapper.Map<IList<TEntity>, IList<TDto>>(listTE);
+                response.Data = listDC.ToList();
+            }
+            catch (Exception e)
+            {
+                response.Result.HasErrors = false;
+                response.Result.Messages.Add("No se pudo obtener los datos de la BD");
+                response.Result.Exception = new TechnicalException("Error al ejecutar GetByFilter", e);
+            }
+
+            return response;
+        }
+
+        public PagedListResponse<TDto> GetPagedByFilter(Pager pager, TFilter filter)
         {
             int count = 0;
             var pagedListResponse = new PagedListResponse<TDto>();
 
             try
             {
-                var query = OnFilter(_uow.GetRepository<TEntity>().GetQuery(), filter);
+                var query = OnFilter(_uow.GetRepository<TEntity>().GetQuery(pager), filter);
 
-                //query = filter.Id > 0 ? query.Where(q => q.Id == filter.Id) : query;
-                //query = filter.FechaBaja.HasValue ? query.Where(q => q.FechaBaja != filter.FechaBaja) : query;
+                if (typeof(TEntity) is IRemovableEntity)
+                    query = filter.FechaBaja.HasValue ? query.Where(q => ((IRemovableEntity)q).FechaBaja != filter.FechaBaja) : query;
 
                 count = query.Count();
-                if (filter.PageSize >= 0 && filter.CurrentPage > 0)
-                {
-                    query = query.Take(filter.PageSize);
-                    query = query.Skip(filter.CurrentPage);
-                }
-
+                
                 var listTE = query.ToList();
                 var listDC = Mapper.Map<IList<TEntity>, IList<TDto>>(listTE);
                 pagedListResponse.Count = count;

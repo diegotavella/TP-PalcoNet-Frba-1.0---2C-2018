@@ -1,4 +1,5 @@
-﻿using PalcoNet.Entities.Implementations;
+﻿using PalcoNet.Dtos.Filters;
+using PalcoNet.Entities.Implementations;
 using PalcoNet.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,21 @@ namespace PalcoNet.Repositories.Implementations
             return _dbSet.AsQueryable<TE>();
         }
 
+        public IQueryable<TE> GetQuery(Pager pager)
+        {
+            var query = _dbSet.AsQueryable<TE>();
+            if (pager.PageSize > 0 && pager.CurrentPage > 0)
+            {
+                query = query.Take(pager.PageSize);
+                query = query.Skip(pager.CurrentPage);
+            }
+
+            if (!string.IsNullOrEmpty(pager.Order))
+                query = pager.IsAsc ? query.OrderBy(q => pager.Order) : query.OrderByDescending(q => pager.Order);
+
+            return query;
+        }
+
         /// <summary>
         /// Obtiene una entidad a traves de su id pk
         /// </summary>
@@ -61,6 +77,16 @@ namespace PalcoNet.Repositories.Implementations
         public virtual IList<TE> GetAll()
         {
             return (IList<TE>)_dbSet.ToList<TE>();
+        }
+
+        /// <summary>
+        /// Obtiene todas las entidades limitadas por pager
+        /// </summary>
+        /// <returns></returns>
+        public virtual IList<TE> GetAll(Pager pager)
+        {
+            var query = GetQuery(pager);
+            return (IList<TE>)query.ToList<TE>();
         }
 
         /// <summary>
