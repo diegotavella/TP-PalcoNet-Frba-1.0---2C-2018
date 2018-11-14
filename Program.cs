@@ -1,4 +1,9 @@
-﻿using System;
+﻿using PalcoNet.App_Start;
+using PalcoNet.Business.Implementations;
+using PalcoNet.Dtos;
+using PalcoNet.Repositories;
+using PalcoNet.Repositories.Implementations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +19,10 @@ namespace PalcoNet
         [STAThread]
         static void Main()
         {
+            BootStrapper.Configuration();
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.SetCompatibleTextRenderingDefault(false);         
+            Application.Run(new FrmMain());
         }
     }
 }
