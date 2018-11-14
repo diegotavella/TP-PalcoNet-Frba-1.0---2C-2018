@@ -11,7 +11,7 @@ namespace PalcoNet.Dtos.Responses
     {
         public Result()
         {
-            HasErrors = true;
+            HasErrors = false;
             Messages = new List<string>();
         }
 

@@ -148,14 +148,14 @@ namespace PalcoNet.Business.Implementations
 
                 if (typeof(TEntity) is IRemovableEntity)
                     query = filter.FechaBaja.HasValue ? query.Where(q => ((IRemovableEntity)q).FechaBaja != filter.FechaBaja) : query;
-
-                var listTE = query.ToList();
-                var listDC = Mapper.Map<IList<TEntity>, IList<TDto>>(listTE);
-                response.Data = listDC.ToList();
+                                
+                var TEList = query.ToList();
+                var DCList = _mapper.Map<List<TDto>>(TEList);
+                response.Data = DCList;
             }
             catch (Exception e)
             {
-                response.Result.HasErrors = false;
+                response.Result.HasErrors = true;
                 response.Result.Messages.Add("No se pudo obtener los datos de la BD");
                 response.Result.Exception = new TechnicalException("Error al ejecutar GetByFilter", e);
             }
@@ -184,7 +184,7 @@ namespace PalcoNet.Business.Implementations
             }
             catch (Exception e)
             {
-                pagedListResponse.Response.Result.HasErrors = false;
+                pagedListResponse.Response.Result.HasErrors = true;
                 pagedListResponse.Response.Result.Messages.Add("No se pudo obtener los datos de la BD");
                 pagedListResponse.Response.Result.Exception = new TechnicalException("Error al ejecutar GetByFilter", e);
             }

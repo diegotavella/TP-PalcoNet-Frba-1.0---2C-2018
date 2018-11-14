@@ -7,10 +7,15 @@ using PalcoNet.Entities.Implementations;
 using PalcoNet.Business.Implementations;
 using PalcoNet.Repositories;
 using PalcoNet.Infraestructure.Logging;
+using PalcoNet.Infraestructure.Extensions;
 using PalcoNet.Dtos;
 using System.Data.Entity;
 using System.Linq;
 using System.Data.Entity.Core.Objects;
+using PalcoNet.Repositories.Interfaces;
+using System.Collections.Generic;
+using Unity;
+using PalcoNet.Infraestructure.Security;
 
 namespace PalcoNet.UnitTest
 {
@@ -20,7 +25,7 @@ namespace PalcoNet.UnitTest
         private readonly Fixture _fixture;
         private readonly IMapper _mapper;
         private readonly ILoggerFactory _loggerFactory;
-
+        protected readonly IUnityContainer _container = new UnityContainer();
         public UsuarioBusinessTest()
         {
             _fixture = new Fixture();
@@ -33,12 +38,24 @@ namespace PalcoNet.UnitTest
         public void Should_loggin_ok()
         {
             // Arrange
-            var usuario = _fixture.Create<UsuarioDto>();
+            var usuarioDto = _fixture.Create<UsuarioDto>();
+            usuarioDto.UserName = "Diego";
+            var userDtoList = new List<UsuarioDto> { usuarioDto };
+            var usuario = _fixture.Create<Usuario>();
             usuario.UserName = "Diego";
-            usuario.Password = "123456";
-            var palcoNetContextMock = new Mock<PalcoNetContext>();
-            var business = new UsuarioBusiness(palcoNetContextMock.Object, _mapper, _loggerFactory);
-            //palcoNetContextMock.Setup(x => x.GetRepository<UsuarioDto>().GetQuery()).Returns(MockDbSet(usuario));
+            usuario.Password = SecurityHelper.EncodePassword("123456", Algorithm.Sha256);
+
+            var loggerFactoryMock = new Mock<ILoggerFactory>();
+            var loggerFake = new LoggerFake();
+            loggerFactoryMock.Setup(x => x.Get<UsuarioBusiness>()).Returns(loggerFake);
+
+            var repositoryMock = new Mock<IRepository<Usuario>>();
+            repositoryMock.Setup(x => x.GetQuery()).Returns(MockDbSet(usuario));
+            var uow = new Mock<IUnitOfWork>();
+            uow.Setup(x => x.GetRepository<Usuario>()).Returns(repositoryMock.Object);
+            var mapperMock = new Mock<IMapper>();
+            mapperMock.Setup(x => x.Map<List<UsuarioDto>>(It.IsAny<List<Usuario>>())).Returns(userDtoList);
+            var business = new UsuarioBusiness(uow.Object, mapperMock.Object, loggerFactoryMock.Object);            
 
             // Act
             var response = business.GetByUserNamePassword("Diego", "123456");

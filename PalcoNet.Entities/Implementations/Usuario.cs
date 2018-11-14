@@ -10,11 +10,11 @@ namespace PalcoNet.Entities.Implementations
     {
         public Usuario()
         {
-            Roles = new List<Rol>();
+            //Roles = new List<Rol>();
         }
         public string UserName { set; get; }
         public string Password { set; get; }
         public bool Inhabilitado { set; get; }
-        public List<Rol> Roles { set; get; }
+        //public List<Rol> Roles { set; get; }
     }
 }

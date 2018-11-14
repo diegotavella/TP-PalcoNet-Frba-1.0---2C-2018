@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PalcoNet.Infraestructure.Security;
 
 namespace PalcoNet.Business.Implementations
 {
@@ -21,19 +22,24 @@ namespace PalcoNet.Business.Implementations
         public Response<UsuarioDto> GetByUserNamePassword(string userName, string password)
         {
             var responseView = new Response<UsuarioDto>();
-            Response<List<UsuarioDto>> response = null;
             try
             {
-                response = GetByFilter(new UsuarioFilter() { UserName = userName, Password = password });
-                if (!response.Result.HasErrors)
-                {
+                var passwordT = SecurityHelper.EncodePassword(password, Algorithm.Sha256);
+                var response = GetByFilter(new UsuarioFilter() { UserName = userName, Password = passwordT });
+                if (!response.Result.HasErrors && response.Data.Count > 0)
                     responseView.Data = response.Data.Single();
+                else if (!response.Result.HasErrors && response.Data.Count == 0)
+                {
+                    responseView.Result.HasErrors = true;
+                    responseView.Result.Messages.Add("Usuario y/o password incorrecta");
                 }
+                else
+                    responseView.Result.Messages.Add(string.Format("Error: {0}", response.Result.Messages.FirstOrDefault()));
             }
             catch (Exception e)
             {
                 _logger.Error(e, "");
-                responseView.Result.Messages.Add(string.Format("Ocurrio un error al loguearse: {0}", response.Result.Messages.First()));
+                responseView.Result.Messages.Add("Ocurrio un error al loguearse");
             }
 
             return responseView;
