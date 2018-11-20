@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PalcoNet.Forms
 {
-    public class PalcoNetFormsFactory : IFormFactory
+    public class PalcoNetFormFactory : IFormFactory
     {
         private Func<Type, IForm> _provider;
 
-        public PalcoNetFormsFactory(Func<Type, IForm> provider)
+        public PalcoNetFormFactory(Func<Type, IForm> provider)
         {
             _provider = provider;
         }
@@ -22,13 +22,14 @@ namespace PalcoNet.Forms
 
         public IForm GetForm(Type formType)
         {
+            if (_provider == null) throw new InvalidOperationException("Debe setear el provider antes de obtener el formulario");
             return _provider(formType);
         }
 
         public IForm GetForm<T>() where T : class
         {
             var formType = typeof(T);
-            return _provider(formType);
+            return GetForm(formType);
         }
     }
 }

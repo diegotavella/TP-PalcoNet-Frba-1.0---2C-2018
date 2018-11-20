@@ -69,7 +69,7 @@ namespace PalcoNet.App_Start
 
         protected void ConfigureForms()
         {
-            var config = new FormConfiguration(type =>
+            var config = new PalcoNetFormConfiguration(type =>
             {
                 if (type.Equals(typeof(frmMain)))
                     return _container.Resolve<frmMain>();

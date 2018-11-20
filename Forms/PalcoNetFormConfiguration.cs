@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace PalcoNet.Forms
 {
-    public class FormConfiguration : IFormConfiguration
+    public class PalcoNetFormConfiguration : IFormConfiguration
     {
         private readonly Func<Type, IForm> _provider = null;
-        public FormConfiguration(Func<Type, IForm> provider)
+        public PalcoNetFormConfiguration(Func<Type, IForm> provider)
         {
             _provider = provider;
         }
 
         public IFormFactory CreateFormFactory()
         {
-            return new PalcoNetFormsFactory(_provider);
+            if (_provider == null) throw new InvalidOperationException("Debe setear el provider antes de crear el factory");
+            return new PalcoNetFormFactory(_provider);
         }
     }
 }

@@ -139,11 +139,11 @@
     <Compile Include="Editar Publicacion\frmEditarPublicacion.Designer.cs">
       <DependentUpon>frmEditarPublicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormConfiguration.cs" />
+    <Compile Include="Forms\PalcoNetFormConfiguration.cs" />
     <Compile Include="Forms\IForm.cs" />
     <Compile Include="Forms\IFormConfiguration.cs" />
     <Compile Include="Forms\IFormFactory.cs" />
-    <Compile Include="Forms\PalcoNetFormsFactory.cs" />
+    <Compile Include="Forms\PalcoNetFormFactory.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
