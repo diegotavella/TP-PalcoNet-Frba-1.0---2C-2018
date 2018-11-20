@@ -45,14 +45,13 @@
   <ItemGroup>
     <Compile Include="Implementations\BaseBusiness.cs" />
     <Compile Include="Implementations\UsuarioBusiness.cs" />
+    <Compile Include="Interfaces\IUsuarioBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\PalcoNet.Dtos\PalcoNet.Dtos.csproj">
       <Project>{3337f078-8a4e-4065-9931-701b79dd5aca}</Project>

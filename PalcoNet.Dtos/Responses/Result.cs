@@ -19,5 +19,17 @@ namespace PalcoNet.Dtos.Responses
         public List<string> Messages { set; get; }
 
         public PalcoNetException Exception { get; set; }
+
+        public string GetMesseges()
+        {
+            var msgs = new StringBuilder();
+            if (Messages == null || Messages.Count() == 0)
+                return string.Empty;
+
+            foreach (var m in Messages)
+                msgs.Append(m);
+
+            return msgs.ToString();
+        }
     }
 }

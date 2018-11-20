@@ -13,22 +13,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unity;
+using PalcoNet.Business.Interfaces;
+using PalcoNet.Forms;
+using PalcoNet.Login;
 
 namespace PalcoNet.App_Start
 {
     public class BootStrapper
     {
-        protected readonly IUnityContainer _container = new UnityContainer();
+        protected IUnityContainer _container;
         private static BootStrapper _instance = null;
 
-        public static void Configuration()
+        public static void Configuration(IUnityContainer container)
         {
             if (_instance == null)
                 _instance = new BootStrapper();
 
+            _instance._container = container;
             _instance.ConfigureMapping();
             _instance.ConfigureContainer();
             _instance.ConfigureLogging();
+            _instance.ConfigureForms();
         }
 
         /// <summary>
@@ -40,7 +45,6 @@ namespace PalcoNet.App_Start
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfilesFromAssemblyOf(GetType());
-                //cfg.AddProfile<PalcoNetProfile>();
             });
 
             _container.RegisterInstance<IMapper>(config.CreateMapper());
@@ -52,13 +56,30 @@ namespace PalcoNet.App_Start
             _container.RegisterType<IUnitOfWork, PalcoNetContext>();
             _container.RegisterType<ILoggingConfigurer, NLogLoggingConfigurer>();
             _container.RegisterType<ILoggerFactory, NLogLoggerFactory>();
-            _container.Resolve<UsuarioBusiness>();
+            _container.RegisterType<IUsuarioBusiness, UsuarioBusiness>();
+            _container.RegisterType<frmMain>();
+            _container.RegisterType<frmLogin>();
         }
 
         protected void ConfigureLogging()
         {
             var configurer = _container.Resolve<ILoggingConfigurer>();
             configurer.Configure();
+        }
+
+        protected void ConfigureForms()
+        {
+            var config = new FormConfiguration(type =>
+            {
+                if (type.Equals(typeof(frmMain)))
+                    return _container.Resolve<frmMain>();
+                else if (type.Equals(typeof(frmLogin)))
+                    return _container.Resolve<frmLogin>();
+                else
+                    throw new Exception("Provider no configurado");
+            });
+
+            _container.RegisterInstance<IFormFactory>(config.CreateFormFactory());
         }
     }
 }

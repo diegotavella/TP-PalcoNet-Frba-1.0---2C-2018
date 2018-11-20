@@ -13,6 +13,7 @@ namespace PalcoNet.Dtos
             Funcionalidades = new List<FuncionalidadDto>();
         }
         public string Nombre { set; get; }
+        public string Descripcion { set; get; }
         public IList<FuncionalidadDto> Funcionalidades { set; get; }
     }
 }

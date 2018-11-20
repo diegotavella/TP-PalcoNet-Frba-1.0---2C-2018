@@ -58,8 +58,8 @@ namespace PalcoNet.Business.Implementations
             catch (Exception e)
             {
                 response.Result.HasErrors = true;
-                response.Result.Messages.Add("No se pudo borrar");
-                response.Result.Exception = new TechnicalException("Error al ejecutar Delete", e);
+                response.Result.Messages.Add("No se pudo insertar");
+                response.Result.Exception = new TechnicalException("Error al ejecutar Insert", e);
                 return response;
             }
         }
@@ -69,7 +69,7 @@ namespace PalcoNet.Business.Implementations
             var response = new Response<TDto>();
             try
             {
-                TEntity TE = Mapper.Map<TDto, TEntity>(TD);
+                TEntity TE = OnToEntity(TD);
                 _uow.GetRepository<TEntity>().Update(TE);
                 response.Result.Messages.Add("Actualizado satisfactorio");
                 return response;
@@ -77,8 +77,8 @@ namespace PalcoNet.Business.Implementations
             catch (Exception e)
             {
                 response.Result.HasErrors = true;
-                response.Result.Messages.Add("No se pudo borrar");
-                response.Result.Exception = new TechnicalException("Error al ejecutar Delete", e);
+                response.Result.Messages.Add("No se pudo actualizar");
+                response.Result.Exception = new TechnicalException("Error al ejecutar Update", e);
                 return response;
             }
         }
@@ -88,7 +88,7 @@ namespace PalcoNet.Business.Implementations
             var response = new Response<TDto>();
             try
             {
-                TEntity TE = Mapper.Map<TDto, TEntity>(TD);
+                TEntity TE = OnToEntity(TD);
                 _uow.GetRepository<TEntity>().Delete(TE);
                 response.Result.Messages.Add("Borrado satisfactorio");
                 return response;
@@ -102,13 +102,12 @@ namespace PalcoNet.Business.Implementations
             }
         }
 
-        public Response<TDto> DeleteById(TDto TD)
+        public Response<TDto> DeleteById(TID id)
         {
             var response = new Response<TDto>();
             try
             {
-                TEntity TE = Mapper.Map<TDto, TEntity>(TD);
-                _uow.GetRepository<TEntity>().Delete<TID>(TD.Id);
+                _uow.GetRepository<TEntity>().Delete<TID>(id);
                 response.Result.Messages.Add("Borrado satisfactorio");
                 return response;
             }
@@ -186,7 +185,7 @@ namespace PalcoNet.Business.Implementations
             {
                 pagedListResponse.Response.Result.HasErrors = true;
                 pagedListResponse.Response.Result.Messages.Add("No se pudo obtener los datos de la BD");
-                pagedListResponse.Response.Result.Exception = new TechnicalException("Error al ejecutar GetByFilter", e);
+                pagedListResponse.Response.Result.Exception = new TechnicalException("Error al ejecutar GetPagedByFilter", e);
             }
             
             return pagedListResponse;

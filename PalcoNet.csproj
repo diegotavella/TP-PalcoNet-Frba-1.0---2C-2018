@@ -89,94 +89,114 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abm Cliente\Form1.cs">
+    <Compile Include="Abm Cliente\frmCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Cliente\frmCliente.Designer.cs">
+      <DependentUpon>frmCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Empresa Espectaculo\Form1.cs">
+    <Compile Include="Abm Empresa Espectaculo\frmEmpresa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Empresa Espectaculo\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Empresa Espectaculo\frmEmpresa.Designer.cs">
+      <DependentUpon>frmEmpresa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Grado\Form1.cs">
+    <Compile Include="Abm Grado\frmGrado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Grado\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Grado\frmGrado.Designer.cs">
+      <DependentUpon>frmGrado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Rol\Form1.cs">
+    <Compile Include="Abm Rol\frmRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Rol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Rol\frmRol.Designer.cs">
+      <DependentUpon>frmRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Rubro\Form1.cs">
+    <Compile Include="Abm Rubro\frmRubro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Rubro\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Rubro\frmRubro.Designer.cs">
+      <DependentUpon>frmRubro.cs</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BootStrapper.cs" />
-    <Compile Include="Canje Puntos\Form1.cs">
+    <Compile Include="Canje Puntos\frmPuntos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Canje Puntos\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Canje Puntos\frmPuntos.Designer.cs">
+      <DependentUpon>frmPuntos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar\Form1.cs">
+    <Compile Include="Comprar\frmComprar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprar\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Comprar\frmComprar.Designer.cs">
+      <DependentUpon>frmComprar.cs</DependentUpon>
     </Compile>
     <Compile Include="Configuratios\MapperProfiles\PalcoNetProfile.cs" />
-    <Compile Include="Editar Publicacion\Form1.cs">
+    <Compile Include="Editar Publicacion\frmEditarPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editar Publicacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Editar Publicacion\frmEditarPublicacion.Designer.cs">
+      <DependentUpon>frmEditarPublicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMain.cs">
+    <Compile Include="Forms\FormConfiguration.cs" />
+    <Compile Include="Forms\IForm.cs" />
+    <Compile Include="Forms\IFormConfiguration.cs" />
+    <Compile Include="Forms\IFormFactory.cs" />
+    <Compile Include="Forms\PalcoNetFormsFactory.cs" />
+    <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.Designer.cs">
-      <DependentUpon>FrmMain.cs</DependentUpon>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generar Publicacion\Form1.cs">
+    <Compile Include="Generar Publicacion\frmGenerarPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Generar Publicacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Generar Publicacion\frmGenerarPublicacion.Designer.cs">
+      <DependentUpon>frmGenerarPublicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generar Rendicion Comisiones\Form1.cs">
+    <Compile Include="Generar Rendicion Comisiones\frmRendicionComisiones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Generar Rendicion Comisiones\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Generar Rendicion Comisiones\frmRendicionComisiones.Designer.cs">
+      <DependentUpon>frmRendicionComisiones.cs</DependentUpon>
     </Compile>
-    <Compile Include="Historial Cliente\Form1.cs">
+    <Compile Include="Historial Cliente\frmHistorialCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Historial Cliente\frmHistorialCliente.Designer.cs">
+      <DependentUpon>frmHistorialCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Listado Estadistico\Form1.cs">
+    <Compile Include="Listado Estadistico\frmEstadistico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Listado Estadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Listado Estadistico\frmEstadistico.Designer.cs">
+      <DependentUpon>frmEstadistico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Registro de Usuario\Form1.cs">
+    <Compile Include="Registro de Usuario\frmUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registro de Usuario\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Registro de Usuario\frmUsuario.Designer.cs">
+      <DependentUpon>frmUsuario.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Abm Rol\frmRol.resx">
+      <DependentUpon>frmRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

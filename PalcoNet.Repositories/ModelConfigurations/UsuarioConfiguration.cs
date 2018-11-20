@@ -14,9 +14,13 @@ namespace PalcoNet.Repositories.ModelConfigurations
         {
             ToTable("Usuario");
             HasKey(x => x.Id);
-            Property(q => q.UserName).HasColumnName("UserName");
-            Property(q => q.Password).HasColumnName("Password");
+            Property(q => q.UserName).HasColumnName("UserName").IsRequired();
+            Property(q => q.Password).HasColumnName("Password").IsRequired();
             Property(q => q.Inhabilitado).HasColumnName("Inhabilitado");
+            Property(q => q.CantIntentosFallidos).HasColumnName("CantIntentosFallidos");
+            Property(q => q.MaxIntentosFallidos).HasColumnName("MaxIntentosFallidos");
+            Property(q => q.PrimerIngreso).HasColumnName("PrimerIngreso");
+            Property(q => q.FechaBaja).HasColumnName("FechaBaja");
         }
     }
 }

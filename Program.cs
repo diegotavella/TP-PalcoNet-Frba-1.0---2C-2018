@@ -1,6 +1,7 @@
 ﻿using PalcoNet.App_Start;
 using PalcoNet.Business.Implementations;
 using PalcoNet.Dtos;
+using PalcoNet.Forms;
 using PalcoNet.Repositories;
 using PalcoNet.Repositories.Implementations;
 using System;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Unity;
 
 namespace PalcoNet
 {
@@ -19,10 +21,13 @@ namespace PalcoNet
         [STAThread]
         static void Main()
         {
-            BootStrapper.Configuration();
+            IUnityContainer container = new UnityContainer();
+            BootStrapper.Configuration(container);
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);         
-            Application.Run(new FrmMain());
+            Application.SetCompatibleTextRenderingDefault(false);
+            IFormFactory formFactory = container.Resolve<IFormFactory>();
+            var frmMain = formFactory.GetForm<frmMain>();
+            Application.Run((Form)frmMain);
         }
     }
 }

@@ -12,12 +12,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PalcoNet.Infraestructure.Security;
+using PalcoNet.Business.Interfaces;
 
 namespace PalcoNet.Business.Implementations
 {
-    public class UsuarioBusiness : BaseBusiness<Int64, Usuario, UsuarioDto, UsuarioFilter>
+    public class UsuarioBusiness : BaseBusiness<Int64, Usuario, UsuarioDto, UsuarioFilter>, IUsuarioBusiness
     {
-        public UsuarioBusiness(IUnitOfWork uow, IMapper mapper, ILoggerFactory loggerFactory) : base(uow, mapper, loggerFactory) { }
+        public UsuarioBusiness(IUnitOfWork uow, IMapper mapper, ILoggerFactory loggerFactory) : base(uow, mapper, loggerFactory) 
+        {
+
+        }
 
         public Response<UsuarioDto> GetByUserNamePassword(string userName, string password)
         {
@@ -32,13 +36,16 @@ namespace PalcoNet.Business.Implementations
                 {
                     responseView.Result.HasErrors = true;
                     responseView.Result.Messages.Add("Usuario y/o password incorrecta");
+
+                    // TODO: agregar intento de error en la bd
+                    // si supero el limite bloquear usuario e informar
                 }
                 else
                     responseView.Result.Messages.Add(string.Format("Error: {0}", response.Result.Messages.FirstOrDefault()));
             }
             catch (Exception e)
             {
-                _logger.Error(e, "");
+                _logger.Error(e, string.Format("Ocurrio un error al loguearse: usuario:{0}", userName));
                 responseView.Result.Messages.Add("Ocurrio un error al loguearse");
             }
 

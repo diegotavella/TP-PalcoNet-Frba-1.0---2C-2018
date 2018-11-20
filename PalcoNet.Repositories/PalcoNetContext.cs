@@ -30,6 +30,8 @@ namespace PalcoNet.Repositories
             base.OnModelCreating(modelBuilder);
             modelBuilder.HasDefaultSchema(EnvironmentConfiguration.GetDefaultSchema());
             modelBuilder.Configurations.Add<Usuario>(new UsuarioConfiguration());
+            modelBuilder.Configurations.Add<Rol>(new RolConfiguration());
+            modelBuilder.Configurations.Add<Funcionalidad>(new FuncionalidadConfiguration());
         }
 
         protected DbContextTransaction Transaction { get; set; }
