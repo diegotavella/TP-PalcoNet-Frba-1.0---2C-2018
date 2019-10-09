@@ -162,6 +162,12 @@
     <Compile Include="Generar Rendicion Comisiones\frmRendicionComisiones.Designer.cs">
       <DependentUpon>frmRendicionComisiones.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generics\GenericForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Generics\GenericForm.Designer.cs">
+      <DependentUpon>GenericForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Historial Cliente\frmHistorialCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generics\GenericForm.resx">
+      <DependentUpon>GenericForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

@@ -84,5 +84,10 @@ namespace PalcoNet.Login
                 }
             }
         }
+
+        private void lblCreateUser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.lblCreateUser = new System.Windows.Forms.LinkLabel();
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.btnIngresar = new System.Windows.Forms.Button();
@@ -40,15 +40,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // linkLabel1
+            // lblCreateUser
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(85, 179);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(69, 13);
-            this.linkLabel1.TabIndex = 13;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Crear usuario";
+            this.lblCreateUser.AutoSize = true;
+            this.lblCreateUser.Location = new System.Drawing.Point(85, 179);
+            this.lblCreateUser.Name = "lblCreateUser";
+            this.lblCreateUser.Size = new System.Drawing.Size(69, 13);
+            this.lblCreateUser.TabIndex = 13;
+            this.lblCreateUser.TabStop = true;
+            this.lblCreateUser.Text = "Crear usuario";
+            this.lblCreateUser.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblCreateUser_LinkClicked);
             // 
             // lblPassword
             // 
@@ -113,7 +114,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(249, 305);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.lblCreateUser);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.btnIngresar);
@@ -130,7 +131,7 @@
 
         #endregion
 
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel lblCreateUser;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Button btnIngresar;
